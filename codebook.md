@@ -1,17 +1,44 @@
 #CodeBook
-##Introduction
-The script run_analysis.Rperforms the 5 steps described in the course project's definition.
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. and the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) - both using a low pass Butterworth filter.
 
-- First, all the similar data is merged using the rbind() function. By similar, we address those files having the same number of columns and referring to the same entities.
-- Then, only those columns with the mean and standard deviation measures are taken from the whole dataset. After extracting these columns, they are given the correct names, taken from features.txt.
-- As activity data is addressed with values 1:6, we take the activity names and IDs from activity_labels.txt and they are substituted in the dataset.
-- On the whole dataset, those columns with vague column names are corrected.
-- Finally, we generate a new dataset with all the average measures for each subject and activity type (30 subjects * 6 activities = 180 rows). The output file is called averages_data.txt, and uploaded to this repository.
+The body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).
 
-##Variables
-- x_train, y_train, x_test, y_test, subject_train and subject_test contain the data from the downloaded files.
-- x_data, y_data and subject_data merge the previous datasets to further analysis.
-features contains the correct names for the x_data dataset, which are applied to the column names stored in mean_and_std_features, a numeric vector used to extract the desired data.
-- A similar approach is taken with activity names through the activities variable.
-all_data merges x_data, y_data and subject_data in a big dataset.
-- Finally, averages_data contains the relevant averages which will be later stored in a .txt file. ddply() from the plyr package is used to apply colMeans() and ease the development.
+A Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals).
+
+##Description of abbreviations of measurements
+
+leading t or f is based on time or frequency measurements.
+Body = related to body movement.
+Gravity = acceleration of gravity
+Acc = accelerometer measurement
+Gyro = gyroscopic measurements
+Jerk = sudden movement acceleration
+Mag = magnitude of movement
+mean and SD are calculated for each subject for each activity for each mean and SD measurements.
+The units given are g's for the accelerometer and rad/sec for the gyro and g/sec and rad/sec/sec for the corresponding jerks.
+
+These signals were used to estimate variables of the feature vector for each pattern:
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions. They total 33 measurements including the 3 dimensions - the X,Y, and Z axes.
+
+* tBodyAcc-XYZ
+* tGravityAcc-XYZ
+* tBodyAccJerk-XYZ
+* tBodyGyro-XYZ
+* tBodyGyroJerk-XYZ
+* tBodyAccMag
+* tGravityAccMag
+* tBodyAccJerkMag
+* tBodyGyroMag
+* tBodyGyroJerkMag
+* fBodyAcc-XYZ
+* fBodyAccJerk-XYZ
+* fBodyGyro-XYZ
+* fBodyAccMag
+* fBodyAccJerkMag
+* fBodyGyroMag
+* fBodyGyroJerkMag
+
+##The set of variables that were estimated from these signals are:
+
+*mean(): Mean value
+*std(): Standard deviation
